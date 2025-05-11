@@ -19,10 +19,11 @@
     
 ## 專案結構
 
+```
 invoice-helpers/
 ├── frontend/ # React (於 VS Code 開發)
 └── backend/ # Flask-api (於 PyCharm 開發)
-
+```
 
 ##  開發與執行方式
 
@@ -43,12 +44,12 @@ python app_api.py
 ```
 
 ## 使用技術
-前端：React
-後端： Python（Flask RESTful API）
-圖像辨識：Tesseract OCR
-資料擷取：Beautiful Soup（爬蟲）
-測試工具：Ngrok（本機外部連線）
-開發環境：Visual Studio Code、 PyCharm
+- 前端：React
+- 後端： Python（Flask RESTful API）
+- 圖像辨識：Tesseract OCR
+- 資料擷取：Beautiful Soup（爬蟲）
+- 測試工具：Ngrok（本機外部連線）
+- 開發環境：Visual Studio Code、 PyCharm
 
 ## 功能介紹
 
@@ -57,6 +58,7 @@ python app_api.py
 2. 可選擇最新一期或上一期(依財政部網站為準)
 3. 開啟相機，前端使用 OCR 辨識發票號碼
 4. 後端進行比對中獎獎號 
-5. 回傳是否中獎，以及對應獎金
+5. 回傳是否中獎，以及對應獎金.
+
     
     
