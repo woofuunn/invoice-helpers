@@ -1,0 +1,72 @@
+.page { display: none; }
+.active { display: block; }
+.nav-btn {
+  margin-right: 10px;
+  padding: 5px 10px;
+  font-size: 16px;
+}
+
+.video-wrapper {
+  display: flex;
+  flex-direction: column; /* 上下排列 */
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px; /* 預留空間 */
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+/* 控制攝影機畫面大小 */
+.video-crop {
+  position: relative;
+  width: 90%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.video-crop video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 中間的長方形框 */
+.video-overlay-rect {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 50px;
+  border: 4px solid #ffd700;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+/* 提示文字 */
+.video-overlay-text {
+  position: absolute;
+  top: 25%; /*calc(50% - 0px);  在框上方一點 */
+  left: 50%;
+  transform: translateX(-50%);
+/*  background-color: rgba(255,255,255,0.7);*/
+  padding: 4px 10px;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+/* 顯示辨識結果區塊樣式 */
+#invoice-result {
+  width: 90%;
+  background-color: #fff;
+  border: 2px solid #4caf50;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}

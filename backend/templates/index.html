@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>對發票</title>
+    <link rel="stylesheet" href="static/cs/index.css">
+</head>
+<body>
+    <!-- 導覽按鈕 -->
+    <div>
+      <button class="nav-btn" onclick="showPage('helper')">對獎小幫手</button>
+      <button class="nav-btn" onclick="showPage('list')">中獎號碼清單</button>
+    </div>
+
+
+    <!-- 對獎小幫手（預設顯示） -->
+    <div id="helper" class="page active">
+      <h2 style="display: inline-block;">對獎小幫手</h2>
+      <form id="periodForm" style="display: inline-block; margin-left: 20px;">
+        <div class="toggle-btn">
+          <input type="radio" id="btnIndex" name="invoicePeriod" value="index" checked>
+          <label for="btnIndex">{{ period[0] }}</label>
+
+          <input type="radio" id="btnLast" name="invoicePeriod" value="lastNumber">
+          <label for="btnLast">{{ period[1] }}</label>
+        </div>
+      </form>
+
+      <br>
+      <button id="startBtn" onclick="startCamera()">啟動鏡頭</button>
+      <br>
+      <button id="stopBtn" onclick="closeCamera()" style="display:none">關閉鏡頭</button>
+      <br>
+      <p>👍將鏡頭下緣貼齊發票號碼</p>
+        <div class="video-wrapper" style="display: flex; justify-content: center; gap: 10px;">
+          <div class="video-crop">
+            <div class="video-overlay-text">請將鏡頭對準發票號碼</div>
+            <div class="video-overlay-rect"></div>
+            <video id="video" autoplay playsinline></video>
+          </div>
+<!--          <img id="processed" src="" width="45%" />-->
+        </div>
+
+      <div id="invoice-result" style="display:none;">
+        <p id="result-text"></p>
+      </div>
+    </div>
+
+    <!-- 中獎號碼清單 -->
+    <div id="list" class="page">
+      <h2>中獎號碼清單</h2>
+      <button id="invoiceBtn" onclick="getInvoiceNum()">取得中獎號碼</button>
+      <br>
+      <div class="etw-web">
+        <ul></ul>
+      </div>
+      <table class="invoiceNum">
+        <thead>
+          <tr>
+            <th>獎別</th>
+            <th>中獎號碼</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+<script src="static/script.js"></script>
+</body>
+</html>

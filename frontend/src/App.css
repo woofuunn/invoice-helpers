@@ -1,0 +1,373 @@
+/* * {
+  box-sizing: border-box;
+} */
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
+html body {
+  margin: 0;
+  padding: 0;
+
+  height: 100%;
+}
+
+
+
+.nav {
+  background-color: #93704a;
+  padding: 10px 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.nav-btn {
+  padding: 10px 20px;
+  font-size: 10px;
+  border: none;
+  /* background-color: #93704a; */
+}
+
+.component {
+  background-color: #f8f5f0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  position: relative;
+  
+
+}
+
+.component .public, 
+.component .main {
+  width: 100%;
+  margin: 0px auto;
+  max-width: 600px;
+}
+
+
+/* 中間區域結構 */
+.public {
+  padding: 0;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding: 0;
+}
+
+.container-winners, .container-helpers {
+  width: 100%;
+  max-width: 600px;
+}
+
+
+
+.footer {
+  width: 100%;
+  height: 50px;
+  background-color: #93704a;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center
+  }
+
+.open-camera-btn {
+  position: absolute;
+  left: 50%;
+  top:  0%;
+  transform: translate(-50%, -110%);
+  border: none;
+  border-radius: 20px;
+  width: 50%;
+  height: 100px;
+  font-weight: bold;
+  font-size: 50px;
+  z-index: 10;
+  cursor: pointer;
+  box-shadow: 1px 2px 20px rgba(0,0,0,0.3);
+}
+
+
+.videoUnready{
+  visibility: hidden;
+}
+
+
+.video-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 10px; 
+  padding: 0;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  height: 100%;
+
+  
+}
+
+/* 控制攝影機畫面大小 */
+.video-crop {
+  position: relative;
+  width: 100%;
+  /* aspect-ratio: 4 / 3; */
+  overflow: hidden;
+  background: #000;
+}
+
+.video-crop video {
+  width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
+
+.video-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.mask {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/*根據 .video-overlay-rect 裁切 */
+.mask-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(50% - 35px); 
+}
+
+.mask-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: calc(50% - 35px); 
+}
+
+.mask-left {
+  position: absolute;
+  top: calc(50% - 35px); 
+  left: 0;
+  width: 20%; 
+  height: 70px;
+}
+
+.mask-right {
+  position: absolute;
+  top: calc(50% - 35px); 
+  right: 0;
+  width: 20%; 
+  height: 70px;
+}
+
+/* 中間的長方形框 */
+.video-overlay-rect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 70px;
+  border: 4px solid #ffd700;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+/* 顯示辨識結果-區塊位置 */
+.video-overlay-result{
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+/* 顯示辨識結果-區塊樣式 */
+#invoice-result {
+  color: #fff;
+  /* border: 2px solid #4caf50; */
+  width: 220px;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* 提示文字 */
+.video-overlay-text {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #fff;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.video-overlay-status {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #fff;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.video-overlay-button {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60dvw;
+  z-index: 1;
+}
+
+.video-btn-group {
+  display: flex;
+  justify-content:space-around;
+  border: none;
+}
+
+.video-btn {
+  border: none;
+  border-radius: 1rem;
+  width: 100px;
+  height: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  /* cursor: pointer; */
+}
+
+
+/* 中獎號碼單 期別設定 */
+.invoicePeriod ul{
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  
+}
+
+.invoicePeriod ul li {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin: 0 1px;
+}
+
+.invoicePeriod ul li.selected {
+  border-bottom: 3px solid #a23c39;
+}
+
+.invoicePeriod ul li:hover {
+  border-bottom: 3px solid #a23c39;
+}
+
+.invoiceNum {
+  width: 100%;
+  border: 0px;
+  border-collapse: collapse;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  font-size: 16px;
+}
+
+.invoiceNum th, .invoiceNum td {
+  text-align: center;
+  padding: 10px;
+  line-height: 2em;
+}
+
+.invoiceNum th {
+  font-size: 1.25rem;
+  font-weight: bold;
+  background-color: #efd7b2;
+}
+
+
+.invoiceNum td {
+  border-bottom: 1px solid #efd7b2;
+  background-color: #fff;
+}
+
+
+
+#invoiceBtn {
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+  cursor: pointer;
+  width: 100%; /* 讓按鈕比較大顆，在手機好點 */
+}
+
+#invoiceBtn:hover {
+  background-color: #e0e0e0;
+}
+
+.invoicePeriod ul li.selected #invoiceBtn {
+  background-color: #ffd580; /* 選中的按鈕顏色 */
+  color: #000;
+}
+
+.invoicePeriod ul li {
+  flex: 1; /* 讓兩顆按鈕平分 */
+  margin: 5px;
+}
+
+.text-color-red {
+  color: #dc3648;
+}
+
+.font-weight-bold {
+  font-size: 1.9rem;
+  font-weight: 700 !important;
+  line-height: 1.8;
+}
+
+
+
+.hide {
+  opacity: 0.1;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.9s ease;
+}
+
+.text-prompt {
+  font-weight: bold;
+  font-size: 20px;
+
+}
