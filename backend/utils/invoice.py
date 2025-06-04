@@ -21,11 +21,9 @@ def check_invoice(target: str,period: str):
 
         td = soup.select('.container-fluid')[0].select('.etw-tbiggest')
 
-        # ✅ 頭獎（從容易中獎的開始比）
+        # ✅ 頭獎（從容易中獎的開始比對）
         n2 = [td[2].getText()[-8:], td[3].getText()[-8:], td[4].getText()[-8:]]
-        n2 = ["12345678","12347891","44244767"]
         for num in n2:
-
             if target == num:
                 return "中獎！ ", "20萬元"
             elif target[-7:] == num[-7:]:
@@ -65,17 +63,16 @@ def get_period():
         soup = BeautifulSoup(web.text, "html.parser")
 
         # 尋找中獎號碼單的連結文字
-        items = soup.select('.etw-web .etw-submenu01 li a')
+        items = soup.select('.etw-web .etw-submenu li a')
 
         # 使用正則過濾中獎號碼單，並擷取月份文字
-        pattern = re.compile(r'(\d{3}年\d{2}-\d{2}月)中獎號碼單')
+        pattern = re.compile(r'(\d{3}年\d{2}-\d{2}月中獎號碼單)')
 
         periods = []
         for item in items:
             match = pattern.search(item.get('title',''))
             if match:
                 periods.append(match.group(1))
-
         return periods
 
     except Exception as e:
@@ -95,7 +92,7 @@ def get_number(period: str):
     soup = BeautifulSoup(web.text, "html.parser")
     time_now_period = soup.select('.etw-web ul li')[0].getText()
     time_now_period = time_now_period.split("中獎號碼單")[0]
-    time_last_period = soup.select('.etw-web ul li')[2].getText()
+    time_last_period = soup.select('.etw-web ul li')[1].getText()
     time_last_period = time_last_period.split("中獎號碼單")[0]
 
     td = soup.select('.container-fluid')[0].select('.etw-tbiggest')  # 取出中獎號碼的位置
